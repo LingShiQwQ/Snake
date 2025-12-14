@@ -1,0 +1,1 @@
+  -LD:/Codes/Project_Game/Snake/libs/SDL3/lib  -lSDL3 -Wl,-Bstatic -lSDL3_test -Wl,-Bdynamic D:/Codes/Project_Game/Snake/bin/SDL3.dll D:/Codes/Project_Game/Snake/bin/SDL3_ttf.dll -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

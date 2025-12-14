@@ -1,0 +1,20 @@
+[
+{
+  "directory": "D:/Codes/Project_Game/Snake/build",
+  "command": "C:\\PROGRA~2\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/snake.dir/includes_CXX.rsp -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles\\snake.dir\\src\\core.cpp.obj -c D:\\Codes\\Project_Game\\Snake\\src\\core.cpp",
+  "file": "D:/Codes/Project_Game/Snake/src/core.cpp",
+  "output": "CMakeFiles/snake.dir/src/core.cpp.obj"
+},
+{
+  "directory": "D:/Codes/Project_Game/Snake/build",
+  "command": "C:\\PROGRA~2\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/snake.dir/includes_CXX.rsp -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles\\snake.dir\\src\\draw.cpp.obj -c D:\\Codes\\Project_Game\\Snake\\src\\draw.cpp",
+  "file": "D:/Codes/Project_Game/Snake/src/draw.cpp",
+  "output": "CMakeFiles/snake.dir/src/draw.cpp.obj"
+},
+{
+  "directory": "D:/Codes/Project_Game/Snake/build",
+  "command": "C:\\PROGRA~2\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/snake.dir/includes_CXX.rsp -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles\\snake.dir\\src\\main.cpp.obj -c D:\\Codes\\Project_Game\\Snake\\src\\main.cpp",
+  "file": "D:/Codes/Project_Game/Snake/src/main.cpp",
+  "output": "CMakeFiles/snake.dir/src/main.cpp.obj"
+}
+]
