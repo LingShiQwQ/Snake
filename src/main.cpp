@@ -29,6 +29,16 @@ void RestartGame()
 
 void GameOver()
 {
+    if (snake.history_best < snake.score) {
+        std::ofstream file("./record.txt", std::ios::out);
+        file << snake.score;
+        
+    }
+    if (snake.best < snake.score) {
+        snake.best = snake.score;
+    }
+    
+
     SDL_Event ev;
     DrawGameOver();
     SDL_Delay(1250);
@@ -66,6 +76,13 @@ void EventLoop()
                 case SDL_EVENT_QUIT:
                 {
                     IsGameOver = true;
+                    
+                    if (snake.history_best < snake.score)
+                    {
+                        std::ofstream file("./record.txt", std::ios::out);
+                        file << snake.score;
+                        file.close();
+                    }
                     return;
                 }
                 case SDL_EVENT_WINDOW_RESIZED:
@@ -148,6 +165,23 @@ bool InitGame()
     //SDL_Log("Fonts file opened");
 
     IsGameOver = false;
+
+    std::ifstream file;
+    file.open("./record.txt", std::ios::in);
+    if (!file.is_open())
+    {
+        SDL_Log("Open record.txt failed");
+        std::ofstream ofile;
+        ofile.open("./record.txt", std::ios::out);
+        ofile.close();
+        file.open("./record.txt", std::ios::in);
+    }
+
+    file >> snake.history_best;
+
+    SDL_Log("%d", snake.history_best);
+
+    file.close();
 
     return true;
 }

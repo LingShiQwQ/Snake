@@ -32,6 +32,8 @@ void Food::NewFood(const uint8_t INIT_MODE)
 
 Snake::Snake()
 {
+    best = 0;
+    history_best = 0;
     InitValue();
 }
 
@@ -187,7 +189,7 @@ void Snake::UpdateRect()
 
 void Snake::Grow()
 {
-    SDL_FRect newSegment = body[body.size() - 1];
+    SDL_FRect newSegment = body[body.size() - 4];
     body.push_back(newSegment);
 }
 

@@ -5,14 +5,14 @@
 #include <vector>
 #include <string>
 #include <ctime>
+#include <fstream>
 #include <SDL3/SDL.h>
 #include <SDL3_ttf/SDL_ttf.h>
 #include "config.h"
 
 using std::cerr;
-using std::cin;
-using std::cout;
 using std::endl;
+using std::fstream;
 using std::string;
 using std::vector;
 

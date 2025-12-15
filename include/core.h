@@ -37,6 +37,8 @@ public:
     float speed;
 
     int score;
+    int history_best;
+    int best;
 
     vector<SDL_FRect> body;
     uint32_t len;
