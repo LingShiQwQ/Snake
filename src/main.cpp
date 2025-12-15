@@ -82,8 +82,6 @@ void EventLoop()
                 {
                     if (!isChangedValueOfSpeed && event.key.key == SDLK_LSHIFT || event.key.key == SDLK_RSHIFT) {
                         snake.speed = 2 * SPEED;
-                        snake.len /= 2;
-                        snake.UpdateRect();
                         isChangedValueOfSpeed = true;
                     }
                     snake.ChangeDir(event);
@@ -93,8 +91,6 @@ void EventLoop()
                 {
                     if (event.key.key == SDLK_LSHIFT || event.key.key == SDLK_RSHIFT) {
                         snake.speed = SPEED;
-                        snake.len *= 2;
-                        snake.UpdateRect();
                         isChangedValueOfSpeed = false;
                     }
                     break;
