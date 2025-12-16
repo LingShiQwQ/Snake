@@ -22,7 +22,7 @@ bool InitRenders()
     // BackGround 0xBFF4FF
     // Snake  0xCABFFF
     // Food 0xF4FFBF
-    // Font 0x00AED1, Alpha = 0xA6
+    // Font 0x00AED1, Alpha = 0xA0
 
     return true;
 }
@@ -75,47 +75,67 @@ void DrawScore()
 {
     //SDL_Log("DrawScore() called");
     string text = std::to_string(snake.score);
-    text_rect = {window_x - 24, 0, 20, 36};
+    vector<SDL_FRect> multi_text_rect;
+
+    for (int i = text.size(); i > 0; i--) {
+        multi_text_rect.push_back({window_x - 18 * i, 0, 16, 32});
+    }
+
     //SDL_Log("DrawScore() -> to_string() called");
 
-    surf_text = TTF_RenderText_Blended(fnt, text.c_str(), text.size(), {0x00, 0xAE, 0xD1});
-    tex_text = SDL_CreateTextureFromSurface(rdr, surf_text);
-    //SDL_Log("DrawScore() -> Transformared Surface to Texture");
+    for (int i = 0; i < text.size(); i++)
+    {
+        // 创建一个只包含单个字符的字符串
+        char single_char_str[2] = {text[i], '\0'};
 
-    SDL_SetTextureBlendMode(tex_text, SDL_BLENDMODE_BLEND);
-    SDL_SetTextureAlphaMod(tex_text, 0xA6);
-    SDL_RenderTexture(rdr, tex_text, NULL, &text_rect);
+        // 正确的函数调用
+        surf_text = TTF_RenderText_Blended(fnt, single_char_str, 1, {0x00, 0xAE, 0xD1});
+        if (!surf_text)
+            continue;
 
-    SDL_DestroySurface(surf_text);
-    SDL_DestroyTexture(tex_text);
-    //SDL_Log("DrawScore() -> SDL_RenderTexture() called");
+        tex_text = SDL_CreateTextureFromSurface(rdr, surf_text);
+        if (!tex_text)
+        {
+            SDL_DestroySurface(surf_text);
+            continue;
+        }
+
+        SDL_SetTextureBlendMode(tex_text, SDL_BLENDMODE_BLEND);
+        SDL_SetTextureAlphaMod(tex_text, 0xA0);
+        SDL_RenderTexture(rdr, tex_text, NULL, &multi_text_rect[i]);
+
+        SDL_DestroyTexture(tex_text);
+        SDL_DestroySurface(surf_text);
+    }
 }
 void DrawGameOver()
 {
     string t_score = std::to_string(snake.score);
+    string t_best = std::to_string(snake.history_best > snake.best ? snake.history_best : snake.best);
     string t_text_title = "YOU LOST!";
-    string t_text_sub = "Your Scores: ";
+    string t_text_sub = "Scores: ";
     t_text_sub.append(t_score);
+    t_text_sub = t_text_sub + "              Best: " + t_best;
     string t_text_sub2 = "Press ESC to EXIT                  Press ANY key to restart";
 
-    TTF_SetFontSize(fnt, 50);
-    text_rect = {window_x / 2 - window_x / 5 - 10, window_y / 2 - window_y / 3.6f, 360, 160};
+    TTF_SetFontSize(fnt, 58);
+    text_rect = {window_x / 2 - window_x / 5 - 2, window_y / 2 - window_y / 3.6f, 360, 140};
     surf_text = TTF_RenderText_Blended(fnt, t_text_title.c_str(), t_text_title.size(), {0xff, 0xff, 0xff});
     tex_text = SDL_CreateTextureFromSurface(rdr, surf_text);
     SDL_RenderTexture(rdr, tex_text, NULL, &text_rect);
     SDL_DestroySurface(surf_text);
     SDL_DestroyTexture(tex_text);
 
-    TTF_SetFontSize(fnt, 24);
-    text_rect = {window_x / 2 - window_x / 6.5f, window_y / 2 + window_y / 32 - 10, 240, 60};
+    TTF_SetFontSize(fnt, 32);
+    text_rect = {window_x / 2 - window_x / 3.55f + 5, window_y / 2 + window_y / 32 - 10, 480, 60};
     surf_text = TTF_RenderText_Blended(fnt, t_text_sub.c_str(), t_text_sub.size(), {0xff, 0xff, 0xff});
     tex_text = SDL_CreateTextureFromSurface(rdr, surf_text);
     SDL_RenderTexture(rdr, tex_text, NULL, &text_rect);
     SDL_DestroySurface(surf_text);
     SDL_DestroyTexture(tex_text);
 
-    TTF_SetFontSize(fnt, 32);
-    text_rect = {window_x / 2 - window_x / 3, window_y / 2 + window_y / 8, 600, 60};
+    TTF_SetFontSize(fnt, 36);
+    text_rect = {window_x / 2 - window_x / 2.6f - 5, window_y / 2 + window_y / 8, 680, 60};
     surf_text = TTF_RenderText_Blended(fnt, t_text_sub2.c_str(), t_text_sub2.size(), {0xff, 0xff, 0xff});
     tex_text = SDL_CreateTextureFromSurface(rdr, surf_text);
     SDL_RenderTexture(rdr, tex_text, NULL, &text_rect);

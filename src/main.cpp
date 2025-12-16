@@ -66,6 +66,7 @@ void EventLoop()
 {
     SDL_Event event;
     bool isChangedValueOfSpeed = false;
+    bool isBoosting = false;
 
     while (!IsGameOver)
     {
@@ -97,19 +98,24 @@ void EventLoop()
                 }
                 case SDL_EVENT_KEY_DOWN:
                 {
-                    if (!isChangedValueOfSpeed && event.key.key == SDLK_LSHIFT || event.key.key == SDLK_RSHIFT) {
+                    if (!isBoosting && event.key.key == SDLK_LSHIFT || event.key.key == SDLK_RSHIFT) {
                         snake.speed = 2 * SPEED;
-                        isChangedValueOfSpeed = true;
+                        isBoosting = true;
+                    }
+                    else if (isBoosting && event.key.key == SDLK_LSHIFT || event.key.key == SDLK_RSHIFT)
+                    {
+                        snake.speed = SPEED;
+                        isBoosting = false;
                     }
                     snake.ChangeDir(event);
                     break;
                 }
                 case SDL_EVENT_KEY_UP:
                 {
-                    if (event.key.key == SDLK_LSHIFT || event.key.key == SDLK_RSHIFT) {
-                        snake.speed = SPEED;
-                        isChangedValueOfSpeed = false;
-                    }
+                    //if (event.key.key == SDLK_LSHIFT || event.key.key == SDLK_RSHIFT) {
+                        //snake.speed = SPEED;
+                        //isChangedValueOfSpeed = false;
+                    //}
                     break;
                 }
 
