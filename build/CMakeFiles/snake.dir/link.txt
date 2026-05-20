@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\snake.dir/objects.a
-C:\PROGRA~2\mingw64\bin\ar.exe qc CMakeFiles\snake.dir/objects.a @CMakeFiles\snake.dir\objects1.rsp
-C:\PROGRA~2\mingw64\bin\G__~1.EXE -O3 -DNDEBUG -mwindows -Wl,--whole-archive CMakeFiles\snake.dir/objects.a -Wl,--no-whole-archive -o D:\Codes\Project_Game\Snake\bin\snake.exe -Wl,--out-implib,D:\Codes\Project_Game\Snake\bin\libsnake.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\snake.dir\linkLibs.rsp
