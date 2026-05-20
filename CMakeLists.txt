@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 4.2.0)
-project(Snake)
 
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_COMPILER "C:/Program Files (x86)/mingw64/bin/g++.exe")
+project(Snake)
 
 include_directories(${CMAKE_SOURCE_DIR}/libs/SDL3/include)
 include_directories(${CMAKE_SOURCE_DIR}/libs)
